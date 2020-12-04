@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Interactive HTML5 Podcast Player</title>
+		<script type="text/javascript">
+
+var handleCount = 0;
+function handlePlayerProgress() {
+	var audoElement = document.getElementById("player");
+	var spyElement = document.getElementById("spy");
+
+	spyElement.textContent = "update: " + (handleCount++) + " | " +
+	"playing: " + audoElement.currentTime;
+
+	handleScript(audoElement.currentTime);
+}
+
+function handleScript(currentTime) {
+	var interactiveElement  = document.getElementById("interactive");
+	if (currentTime> 27 && currentTime <29) {
+		interactiveElement.textContent = "Do you know Ron Byrant?";
+	}
+
+	if (currentTime> 42 && currentTime <44) {
+		interactiveElement.textContent = "Are you voting in the 2020 general election?";
+	}
+}
+
+setInterval(handlePlayerProgress, 1000);
+
+		</script>
+	</head>
+	<body>
+		<p>HTML5 audio element:</p>
+		<audio id="player" controls>
+			<source src="https://cdn.transistor.fm/file/transistor/m/shows/5938/a5f1b4fc805c0f3827196e5809b95298.mp3" type="audio/mp3" />
+			Your browser doesn't suppor this player.  Sorry!
+		</audio>
+		<p>
+			Javascript TimeHandler fucnction element is registered through window.setInterval().
+			Function inspects AUDIO.currentTime property and updates the following DIV:
+		</p>
+		<div id="spy">No updates from TimeHandler</div>
+		<p>
+			Interactive questions/updates and their associated timestampts are stored in a script.
+			When the currentTime exceeds the timestamp for a question, it's displayed below.
+			Currently there are interactions scheduled at 27 and 42 seconds
+		</p>
+		<div id="interactive">No interactions</div>
+	</body>
+</html>
